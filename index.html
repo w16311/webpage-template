@@ -138,7 +138,7 @@
 <body>
 	<br>
 	<center>
-		<span style="font-size:36px">AI broadcasting</span>
+		<span style="font-size:32px">AI broadcasting:Multi-modal Learning based AI Broadcast Production</span>
 		<table align=center width=600px>
 			<table align=center width=600px>
 				<tr>
@@ -186,7 +186,7 @@
 			<tr>
 				<td width=260px>
 					<center>
-						<img class="round" style="width:500px" src="./resources/sampleteaser.png"/>
+						<img class="round" style="width:1000px" src="./resources/sampleteaser.png"/>
 					</center>
 				</td>
 			</tr>
@@ -198,9 +198,11 @@
 		<center><h1>Abstract</h1></center>
 		<tr>
 			<td>
+				<p style="text-align:justify; text-justify:inter-ideograph;">
 				Live broadcast production using multiple cameras normally requires a large team with a multitude of technical skills, artistic expertise, as well as domain knowledge about the event to be produced, e.g. symphonies, ballets, and various sport events. The current approach to directing and producing live performances is labor-intensive, time-consuming, and lacks support for post-production editing and personalizations. 
 The paper proposes a solution to these issues in the form of an AI-based automatic broadcast production system. This system utilizes multiple ultra-high-definition (UHD) cameras focused  strategically on the stage capturing ``static shots" without camera movements and human interventions. From these static footage, the system performs feature extraction and analysis on the captured video stream and audio, and uses digital video and audio processing techniques to simulate camera movements such as panning, zooming-in/zooming out, and depths-of-field. The digital effects are controlled by an AI system that analyzes video and audio streams in real time, as well as side information such as sports rule books, music scores and play scripts. Higher level information such as live performer-audience interaction, facial expressions of key ``players'' in the scene, salience of audio and video, viewing habits and interests of the target audience etc. can also be incorporated into the AI decision loop, to produce one or many high definition streams that emulates the output of a highly-skilled human production team, dedicated to a specific target audience. The proposed system has the potential to post-process infinitely, or for any number of target demographic groups from the same raw UHD captures. The system can drastically lower the production cost of broadcasting live events, providing 
  targeted and optimized content to a large variety of demographics without incurring significant additional cost. As an initial demonstration of the feasibility of a real time, low latency, high definition quality AI based automatic production system, the system described in the paper can be improved in many areas in terms of quality, speed and latency. It can be further enhanced by incorporating high degress of freedom (DoF) and free-viewpoint video synthesis,immersive audio and virtual reality presentations. 
+				</p>
 			</td>
 		</tr>
 	</table>
@@ -211,6 +213,58 @@ The paper proposes a solution to these issues in the form of an AI-based automat
 	<p align="center">
 		<iframe width="660" height="395" src="https://www.youtube.com/embed/w7tjpLa3Nig" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen align="center"></iframe>
 	</p>
+	<hr>
+
+	<center><h1>Overview</h1></center>
+	<table align=center width=850px>
+		<tr>
+			<td>
+				<p style="text-align:justify;">Our system is composed of four components: the ST (Switching Timeline) system, the ROI (Region of Interest) system, the Camera Selector system, and post-processing.</p>
+				<br>
+				<center>
+						<img class="round" style="width:800px" src="./resources/pipline.png"/>
+				</center>
+				<br>
+				<p style="text-align:justify;">
+					<strong>ST system:</strong> The 2D audio spectrogram is divided into a sequence of 16x16 overlapping patches, which are then
+					linearly transformed into 1-D patch embeddings. These embeddings are augmented with a learnable positional embedding and
+					a classification token is added to the start of the sequence. The resulting embedding is fed into a Transformer and the output of
+					the classification token is used for classification of 527 classes for sound event localization.
+				</p>
+				<br>
+				<center>
+					<img class="round" style="width:800px" src="./resources/st.png"/>
+				</center>
+				<br>
+				<p style="text-align:justify;">
+					<strong>ROI system:</strong> It contains a Sound-source
+					Localization module and Object detection module. The source
+					localization module uses separate audio and video image networks
+					for audio and visual feature extraction. 
+				</p>
+				<br>
+				<center>
+					<img class="round" style="width:800px" src="./resources/ROI.png"/>
+				</center>
+				<br>
+				<p style="text-align:justify;">
+					<strong>Camera Selector system:</strong> We incorporated a Highlight Ranking Net to score the
+					ROI images. 
+				</p>
+				<br>
+				<p style="text-align:justify;">
+					<strong>Post-processing:</strong> To avoid excessive shot jitters, we first smooth the bounding
+					boxes temporally for the chosen camera. For the chosen camera however, the bound-
+					ing box may still jitter due to various factors.
+				</p>
+				<br>
+				<center>
+					<img class="round" style="width:800px" src="./resources/CameraSelector.png"/>
+				</center>
+				<br>
+			</td>
+		</tr>
+	</table>
 	<hr>
 
 	<center><h1>Code</h1></center>
@@ -241,7 +295,7 @@ The paper proposes a solution to these issues in the form of an AI-based automat
 	</table>
 	<br>
 	<hr>
-	<table align=center width=450px>
+	<!-- <table align=center width=450px>
 		<center><h1>Paper and Supplementary Material</h1></center>
 		<tr>
 			<td><a href=""><img class="layered-paper-big" style="height:175px" src="./resources/paper.png"/></a></td>
@@ -257,18 +311,18 @@ The paper proposes a solution to these issues in the form of an AI-based automat
 	</table>
 	<br>
 
-	<table align=center width=600px>
+	<!-- <table align=center width=600px>
 		<tr>
 			<td><span style="font-size:14pt"><center>
 				<a href="./resources/bibtex.txt">[Bibtex]</a>
 			</center></td>
 		</tr>
-	</table>
+	</table> -->
 
-	<hr>
-	<br>
+	<!-- <hr>
+	<br> --> -->
 
-	<table align=center width=900px>
+	<!-- <table align=center width=900px>
 		<tr>
 			<td width=400px>
 				<left>
@@ -277,9 +331,9 @@ The paper proposes a solution to these issues in the form of an AI-based automat
 				</left>
 			</td>
 		</tr>
-	</table>
+	</table> -->
 
-<br>
+<!-- <br> -->
 </body>
 </html>
 
